@@ -1,0 +1,58 @@
+team_name: TalentRadar
+
+primary_contact:
+  name: Mahesh
+  email: ""
+  phone: ""
+
+team_members:
+  - name: Mahesh
+    role: Solo Developer — AI/ML Engineer
+
+github_repo: "https://github.com/mahesh/hiregraph"
+
+sandbox_link: ""
+
+reproduce_command: "python src/pipeline.py --candidates ./data/candidates.jsonl --out ./output/submission.csv"
+
+compute:
+  platform: CPU
+  cores: 4
+  ram_gb: 16
+  python_version: "3.11"
+  gpu_used: false
+  network_used_during_ranking: false
+
+ai_tools_used:
+  - name: Gemini 2.0 Flash
+    purpose: Job description parsing during preprocessing phase only. Not used during ranking.
+  - name: BAAI/bge-large-en-v1.5
+    purpose: Candidate and JD text embeddings for semantic similarity scoring.
+
+methodology: >
+  HireGraph uses a 4-signal multi-layer ranking architecture that combines:
+  (1) Semantic signal using BAAI/bge-large-en-v1.5 embeddings with FAISS cosine similarity
+  to capture meaning beyond keywords,
+  (2) Profile signal using proficiency-weighted skill matching, education tier scoring,
+  experience fit, certification relevance, and Redrob skill assessment scores,
+  (3) Career trajectory signal measuring upward seniority progression, promotion velocity,
+  domain alignment across roles, and company size growth,
+  (4) Behavioral multiplier using all 23 Redrob platform signals — availability (open_to_work
+  + last_active recency), responsiveness (recruiter_response_rate + avg_response_time),
+  reliability (interview_completion_rate + offer_acceptance_rate), market validation
+  (saved_by_recruiters + profile_views), and profile quality (completeness + verification).
+  Scores are fused with seniority-adaptive weights and behavioral score applied as a
+  multiplier. Honeypot candidates with impossible profiles are detected and penalized to
+  near-zero scores. Hidden gems with strong career trajectories but low profile visibility
+  are flagged. Phase 1 preprocessing uses Gemini API for JD parsing and computes embeddings.
+  Phase 2 ranking is 100% CPU-only with zero external API calls, completing in under 5 minutes.
+
+frameworks:
+  - sentence-transformers==2.7.0
+  - faiss-cpu==1.8.0
+  - numpy
+  - pandas
+  - pydantic
+  - google-generativeai
+  - fastapi
+  - uvicorn
