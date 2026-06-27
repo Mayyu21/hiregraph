@@ -70,7 +70,7 @@ def candidate_to_text(candidate: dict) -> str:
 
 def embed_texts(texts: list[str], batch_size: int = 256) -> np.ndarray:
     """
-    Embed a list of texts using the BGE model.
+    Embed a list of texts using the all-MiniLM-L6-v2 model.
     Returns normalized numpy array of shape (n, dim).
     """
     import faiss
@@ -79,7 +79,7 @@ def embed_texts(texts: list[str], batch_size: int = 256) -> np.ndarray:
         texts,
         batch_size=batch_size,
         show_progress_bar=True,
-        normalize_embeddings=True,  # BGE works best with normalization
+        normalize_embeddings=True,  # MiniLM works best with normalization
         convert_to_numpy=True
     )
     return embeddings.astype(np.float32)
