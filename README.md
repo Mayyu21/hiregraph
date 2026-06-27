@@ -18,7 +18,7 @@ Traditional hiring filters miss hidden gems. HireGraph finds them.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    PHASE 1 — PREPROCESSING                  │
-│                  (run once, API calls allowed)               │
+│                  (run once, API calls allowed)              │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  job_description.txt                                        │
@@ -30,13 +30,13 @@ Traditional hiring filters miss hidden gems. HireGraph finds them.
 │  │  jd_parser.py   │  must-haves, enriched 300w text        │
 │  └────────┬────────┘                                        │
 │           │  parsed_jd.json → cache/                        │
-│           ▼                                                  │
-│  candidates.jsonl (475MB, ~100k candidates)                  │
+│           ▼                                                 │
+│  candidates.jsonl (475MB, ~100k candidates)                 │
 │         │                                                   │
 │         ▼                                                   │
 │  ┌─────────────────┐                                        │
-│  │  Layer 2D       │  all-MiniLM-L6-v2               │
-│  │  Semantic       │  384-dim embeddings                   │
+│  │  Layer 2D       │  all-MiniLM-L6-v2                      │
+│  │  Semantic       │  384-dim embeddings                    │
 │  │  Embedder       │  L2 normalized → FAISS IndexFlatIP     │
 │  └────────┬────────┘                                        │
 │           │  candidate_embeddings.npy → cache/              │
@@ -51,27 +51,27 @@ Traditional hiring filters miss hidden gems. HireGraph finds them.
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │              Layer 2 — Signal Extraction             │   │
 │  │                                                      │   │
-│  │  ┌─────────────┐ ┌─────────────┐ ┌───────────────┐  │   │
-│  │  │  Signal A   │ │  Signal B   │ │   Signal C    │  │   │
-│  │  │  Profile    │ │  Career     │ │  Behavioral   │  │   │
-│  │  │             │ │             │ │               │  │   │
-│  │  │ • Skills    │ │ • Trajectory│ │ • 23 Redrob   │  │   │
-│  │  │   match     │ │ • Velocity  │ │   signals     │  │   │
-│  │  │ • Exp fit   │ │ • Domain    │ │ • Availability│  │   │
-│  │  │ • Edu tier  │ │   align     │ │ • Response    │  │   │
-│  │  │ • Certs     │ │ • Company   │ │   rate        │  │   │
-│  │  │ • Assess    │ │   growth    │ │ • Reliability │  │   │
-│  │  │   scores    │ │ • Gap det.  │ │ • Market val  │  │   │
-│  │  └──────┬──────┘ └──────┬──────┘ └──────┬────────┘  │   │
+│  │  ┌─────────────┐ ┌─────────────┐ ┌───────────────┐   │   │
+│  │  │  Signal A   │ │  Signal B   │ │   Signal C    │   │   │
+│  │  │  Profile    │ │  Career     │ │  Behavioral   │   │   │
+│  │  │             │ │             │ │               │   │   │
+│  │  │ • Skills    │ │ • Trajectory│ │ • 23 Redrob   │   │   │
+│  │  │   match     │ │ • Velocity  │ │   signals     │   │   │
+│  │  │ • Exp fit   │ │ • Domain    │ │ • Availability│   │   │
+│  │  │ • Edu tier  │ │   align     │ │ • Response    │   │   │
+│  │  │ • Certs     │ │ • Company   │ │   rate        │   │   │
+│  │  │ • Assess    │ │   growth    │ │ • Reliability │   │   │
+│  │  │   scores    │ │ • Gap det.  │ │ • Market val  │   │   │
+│  │  └──────┬──────┘ └──────┬──────┘ └──────┬────────┘   │   │
 │  └─────────┼───────────────┼───────────────┼────────────┘   │
-│            │               │               │                 │
-│            ▼               ▼               ▼                 │
+│            │               │               │                │
+│            ▼               ▼               ▼                │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │              Layer 3 — Fusion Engine                 │   │
 │  │                                                      │   │
 │  │   Seniority-adaptive weights (senior role):          │   │
-│  │   semantic(0.35) + profile(0.30) + career(0.25)     │   │
-│  │   × behavioral multiplier (0.7 + 0.3 × beh_score)  │   │
+│  │   semantic(0.35) + profile(0.30) + career(0.25)      │   │
+│  │   × behavioral multiplier (0.7 + 0.3 × beh_score)    │   │
 │  │                                                      │   │
 │  │   Hidden Gem Detection: high career_z, low profile_z │   │
 │  │   Honeypot Detection: impossible profile signals     │   │
@@ -231,9 +231,7 @@ The JD itself says: *"The right answer involves reasoning about the gap between 
 ## Team
 
 **TalentRadar**
-
 Developer: Mahesh
-
 Track: Data & AI Challenge — Intelligent Candidate Discovery
-
 Hackathon: INDIA.RUNS by Redrob AI × Hack2Skill
+
