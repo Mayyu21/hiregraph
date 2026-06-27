@@ -26,7 +26,7 @@ compute:
 ai_tools_used:
   - name: Gemini 2.0 Flash
     purpose: Job description parsing during preprocessing phase only. Not used during ranking.
-  - name: BAAI/bge-large-en-v1.5
+  - name: all-MiniLM-L6-v2
     purpose: Candidate and JD text embeddings for semantic similarity scoring.
 
 methodology: >
