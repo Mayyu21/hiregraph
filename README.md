@@ -31,7 +31,7 @@ Traditional hiring filters miss hidden gems. HireGraph finds them.
 │  └────────┬────────┘                                        │
 │           │  parsed_jd.json → cache/                        │
 │           ▼                                                  │
-│  candidates.jsonl (475MB, ~10k candidates)                  │
+│  candidates.jsonl (475MB, ~100k candidates)                  │
 │         │                                                   │
 │         ▼                                                   │
 │  ┌─────────────────┐                                        │
