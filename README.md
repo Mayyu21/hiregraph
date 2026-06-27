@@ -231,6 +231,9 @@ The JD itself says: *"The right answer involves reasoning about the gap between 
 ## Team
 
 **TalentRadar**
+
 Developer: Mahesh
+
 Track: Data & AI Challenge — Intelligent Candidate Discovery
+
 Hackathon: INDIA.RUNS by Redrob AI × Hack2Skill
