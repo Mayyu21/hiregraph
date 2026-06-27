@@ -35,8 +35,8 @@ Traditional hiring filters miss hidden gems. HireGraph finds them.
 │         │                                                   │
 │         ▼                                                   │
 │  ┌─────────────────┐                                        │
-│  │  Layer 2D       │  BAAI/bge-large-en-v1.5               │
-│  │  Semantic       │  1024-dim embeddings                   │
+│  │  Layer 2D       │  all-MiniLM-L6-v2               │
+│  │  Semantic       │  384-dim embeddings                   │
 │  │  Embedder       │  L2 normalized → FAISS IndexFlatIP     │
 │  └────────┬────────┘                                        │
 │           │  candidate_embeddings.npy → cache/              │
@@ -93,7 +93,7 @@ Traditional hiring filters miss hidden gems. HireGraph finds them.
 ## The 4-Signal Design
 
 ### Signal A — Semantic Score (35% weight)
-Uses `BAAI/bge-large-en-v1.5` embeddings (1024 dimensions) to compute cosine similarity between the enriched JD text and each candidate's full profile text. This captures semantic meaning beyond keyword overlap — a candidate who "built a recommendation system" matches "ranking systems" even without using those exact words.
+Uses `all-MiniLM-L6-v2` embeddings (384 dimensions) to compute cosine similarity between the enriched JD text and each candidate's full profile text. This captures semantic meaning beyond keyword overlap — a candidate who "built a recommendation system" matches "ranking systems" even without using those exact words.
 
 ### Signal B — Profile Score (30% weight)
 Structured skill matching with proficiency weighting: expert=1.0, advanced=0.8, intermediate=0.5, beginner=0.2. Also scores experience fit (penalizes underqualified AND overqualified), education tier (tier_1 through tier_4), certifications, and verified Redrob skill assessment scores as ground truth.
@@ -189,7 +189,7 @@ CAND_0000043,29,0.545,"Cloud Engineer with 8.3 yrs exp; top skills: Elasticsearc
 
 | Component | Technology |
 |---|---|
-| Embedding model | BAAI/bge-large-en-v1.5 (1024-dim) |
+| Embedding model | all-MiniLM-L6-v2 (384-dim) |
 | Vector search | FAISS IndexFlatIP (cosine on L2-normalized vectors) |
 | JD parsing | Gemini 2.0 Flash (preprocessing only) |
 | Data validation | Pydantic v2 |
